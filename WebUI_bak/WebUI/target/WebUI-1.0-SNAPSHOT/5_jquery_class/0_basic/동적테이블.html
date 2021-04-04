@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>동적테이블</title>
+<script  src="../lib/jquery-3.6.0.js"></script>
+<script>
+	$(function(){
+		$('#btn').click(function(){  //val() , :check(체크) , val(색상);
+			let table = $('#tbl');
+			let text = $('#text').val();
+			let check = $(".size:checked").val();
+			let color = $("option[class='color']:selected").val();
+			table.append('<tr><td>'+text+'</td><td>'+check+'</td><td>'+color+'</td></tr>')
+			$("#text").val("");
+			$(".size").prop("checked",false)   //attr == prop
+			$(".color").val("선택")
+		})
+	})	
+</script>
+</head>
+<body>
+	<div>
+		<label>항목 :
+		<input id="text" type = text></label>
+	</div>
+	<div>
+		<label>크기 :
+		<input class="size" name='size' type ='radio' value="대">대
+		<input class="size" name='size' type ='radio' value="중">중
+		<input class="size" name='size' type ='radio' value="소">소
+		</label>
+	</div>
+	<div>
+		<label>색상 : <select>
+		<option class="color" value = "선택">선택</option>
+		<option class="color" value = "빨강">빨강</option>
+		<option class="color" value = "파랑">파랑</option>
+		</select>
+		</label>
+	</div>
+	<div>
+		<button id="btn">추가</button>
+	</div>
+	<table id="tbl" border='1'>
+	<tr><td>항목</td><td>크기</td><td>색상</td></tr>
+	</table>
+</body>
+</html>

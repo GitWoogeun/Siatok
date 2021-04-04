@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>jquery.cookie</title>
+    <script src="/5_jquery_class/lib/jquery-3.6.0.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script type="text/javascript">
+      $(function () {
+        /* 쿠키 : 클라이언트에 저장하는 것
+           - 보안에 취약
+           - 문자열만 저장
+           - 저장용량(크기) 소량
+           '송신' 버튼이 눌렸을 때
+        */
+
+        //'송신' 버튼이 눌렸을 때
+        $('#txtMail').val($.cookie('email'))
+
+
+        //송신 버튼 눌렀을때
+        $('#btnSave').click(function () {
+          let msg = $('#txtMail').val();
+          $.cookie('email', msg + '탁우근', {expires: 1});
+          $('#txtMail').val('');
+        })
+      })
+
+    </script>
+  </head>
+  <body>
+    <form method="POST" action="">
+      <label for="txtMail">메일 어드레스：</label><input id="txtMail" type="email" size="50"/>
+      <input id="btnSave" type="button" value="송신"/>
+    </form>
+  </body>
+</html>

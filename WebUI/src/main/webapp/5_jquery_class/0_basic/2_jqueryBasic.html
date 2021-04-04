@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title> 첫 연습 </title>
+<style type="text/css">
+	.active{
+		border:10px solid red;
+	}
+</style>	
+<script src="/WebUI/5_jquery_class/lib/jquery-3.6.0.js"></script> <!-- 제이쿼리 라이브러리 --> <!-- WebContent는 특수폴더라 생략가능 -->
+<script>
+	$(function(){ //dom이 로딩 됐을때 , 문서가 준비 됐을때 , 자바스크립트를 실행한다.
+		$(".man").css({'background':'lightblue','color':'white'})
+		$(".woman").css({'background':'hotpink','color':'yellow'})
+		
+		//(2)
+		$(".inputText").focus(function(){//기존 클래스에 + 클래스 추가
+			$(this).addClass('active'); //this = 이벤트가 발생한 그것만 active가 붙는다.  
+		})			
+		// 포커스를 잃엇을 때(blur) active 클래스 속성을 제거
+		$(".inputText").blur(function(){
+			$(this).removeClass('active');
+		})
+		
+		//(3) 태그 사이의 어떤 값(글자) 지정하거나 얻어 올 때
+		//		- text()
+		//		- html()
+		$("#divText").click(function(){
+			alert( $("#divText").html('<img src="images/grim.jpg">')); //jquery = getter와 setter
+		})
+		
+		$("#divEmpty").click(function(){   //click = event발생 했을때 함수를 호출
+			$(this).empty();      //태그는 있는데 안에 요소 제거
+			//$(this).hide();	  //style로 숨김 : 내용물은 존재 :display:none
+			//$(this).remove();	  //태그까지 존재를 없애버린다.
+		})
+		
+		$("#changeGrim").click(function(){
+			//상대경로
+			//$(this).attr('src',"images/cat.jpg")
+			 
+			//절대경로 : /로 시작
+			$(this).attr('src',"/WebUI/5_jquery_class/0_basic/images/cat.jpg")
+		})
+		
+		
+		//(4) 확인버튼이 눌렀을 때
+		$('#check').click(function(){
+			let message = '';
+			//사용자 입력값 얻어와서 message 변수에 추가
+			message += $('#tf').val()+"/n"+$('#ta').val()+"/n"
+			message += $('#sel option:selected').text()+"/n"+$('#sel_m option:selected').text();     //val() = value값을 얻어온다.
+			alert(message)
+		})
+		
+		//초기화 버튼이 눌러졌을때
+		$('#init').click(function(){
+			// - 이름란에 홍길동 출력
+			// - 메시지란에 '내용을 입력 하세요 출력'
+			let message = $('#tf').attr('placeholder','이름을 입력해주세요')+$('#ta').attr('placeholder','메세지를입력해주세요')+$('#sel').val('incheon')+$('#sel_m').val(['seom2','seom3'])
+		})
+		
+		
+		//(5) 동적만들기
+		$('#btn').click(function(){
+			let actor = $('#actor');
+			let tae = $('#tae');
+			let su = $('#su');
+			let bin = $('#bin');
+			
+			// 동적태그 변경 : append / appendTo()  //append = 첨부하다 , 덧붙이다
+			actor.append(tae);
+			actor.append(su);
+			actor.append(bin);
+
+//			tae.appendTo(actor);
+//			su.appendTo(actor);
+//			bin.appendTo(actor);
+			
+			
+			
+			//********************************
+			//동적 태그 추가
+			actor.append('<div>한배우</div>');
+			let n = $('<div>');
+			n.text('두배우');
+			actor.append(n);
+			actor.append('<img src ="images/grim.jpg"/>')
+			
+			
+		})
+			
+		// (6)
+		$('.data').each(function(){
+			$(this).click(function(){
+				alert($(this).text())     //JQuery
+				//alert($(this).html())   //JQuery
+				
+				//alert(this.innerHTML)   //자바스크립트 코드 this
+				//alert(this.textContent) //자바스크립트 코드 this
+			})			
+		})
+		
+		
+	})
+</script>
+</head>
+<body>
+	<!--  1 -->
+	<ul>
+		<li class="man">김수현</li>
+		<li class="woman">김희애</li>
+		<li class="woman">송혜교</li>
+		<li class="man">하정우</li>
+		<li class="woman">김태희</li>
+	</ul>
+	<!-- 2 -->
+	<input type="text" class="inputText"/>
+	<input type="text" class="inputText"/>
+	<input type="text" class="inputText"/>
+	
+
+	<!-- 3 -->
+		<div id="divText">여기에 글씨를</div>
+		<div id="divHtml">여기에 그림을</div>
+		<div id="divEmpty">여기를 비움</div>
+		<p>
+		<img src="images/puppy.jpg" id='changeGrim'>
+		</p>
+		
+	<!-- 4 -->	
+		<p>
+		이름 : <input id="tf" type="text" size="20" /><br/>
+		메세지 : <textarea id="ta" rows="3" cols="20"></textarea><br/>
+		주소 : <select id="sel">
+			<option value="seoul">서울</option>	<!-- option에 value 값 없어도 됨 -->
+			<option value="busan">부산</option>
+			<option value="masan">마산</option>
+			<option value="incheon">인천</option>
+		</select>
+		<select id="sel_m" multiple="multiple">
+			<option value="seom1">제주도</option>
+			<option value="seom2">울릉도</option>
+			<option value="seom3">독도</option>
+			<option value="seom4">거제도</option>
+		</select><br/>
+		<input type='button' id='check' value='확인'/>
+		<input type='button' id='init' value='초기화'/> <!--  [과제] 클릭시 값 지정하려면  -->
+		<div id='result'></div>
+		</p>
+		
+	<!-- 5 -->
+		<div id="actor">배우</div>
+		<div id="tae">김태희</div>
+		<div id="su">김수현</div>
+		<div id="bin">현빈</div>
+		<button id="btn">동적만들기</button>
+		<!-- [ 과제 ] 동적 테이블 만들기  -->
+
+	<!-- 6 -->
+		<div class="data">이름</div>
+		<div class="data">직업</div>
+		<div class="data">나이</div>
+
+	
+</body>
+</html>

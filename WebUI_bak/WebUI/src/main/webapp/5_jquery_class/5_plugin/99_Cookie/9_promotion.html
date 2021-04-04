@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>광고페이지</title>
+    <script src="/5_jquery_class/lib/jquery-3.6.0.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script>
+      $(function () {
+        //$('#closeWin').click(function () {
+        $('input[type=checkbox]').click(function () {
+          $.cookie('check', 'on', {expires: 1});
+          window.close();
+        })
+
+        $('#closeWin').click(function () {
+          window.close()
+        })
+        //window.close();
+        //})
+      })
+    </script>
+    <!--체크박스가 체크 되었을때 쿠기에 저장
+        name  : 'promotion'
+        value : 'no'
+        기간   : 1일
+    -->
+  </head>
+  <body>
+    <img alt="" src="images/image.jpg"><br/>
+    이 페이지를 오늘 하루 열지 않겠습니다.
+    <input type="checkbox" id="check">
+    <input type='button' id='closeWin' name='closeWin' value='닫기'/>
+  </body>
+</html>

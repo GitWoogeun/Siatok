@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title> 첫 연습 </title>
+
+<style type="text/css">
+		#here{
+			position:absolute;
+			left:0;
+			top:0;
+		}
+</style>
+
+<script  src="../lib/jquery-3.6.0.js"></script>
+<script>
+	$(function(){
+		//$(document).ready(function(){
+		//})
+		
+		// 변수 선언 
+		// 예전버전 = var
+		// es5,6 - let , const , 
+		//var와 let 차이 = 중복이 안된다. 전역변수와 지역변수가 다르다.
+/*		let h = $('#here');
+		h.click(function(){ 	 //div태그중에서 id가 here인것을 찾겠다.
+			h.text('클릭하면 내용이 변경');
+		})  
+		h.mouseenter(function(){    //마우스가 들어갔을때
+			h.css('border','2px solid red')
+		})
+		h.mouseleave(function(){    //마우스가 나갔을때
+			h.css('border','2px dotted blue')
+		})
+		// 마우스가 나갔을때   //mouseleave      , 마우스Enter의 짝궁은 마우스leave
+		// 테두리를 빨간색에 빨간색에 땡땡이선으로 지정
+		
+		
+		//hover : 마우스가 올라갔다 + 내려오는 동작(이벤트)
+		h.hover(function(){
+			h.text("마우스 올라감")
+		} , function(){
+			h.text("마우스 나감")
+		}) //함수가 다른함수의 인자로 받아들일수있다. */
+		
+		
+		// 효과 함수
+//		$("#here").fadeOut(2000);   //2초 동안 천천히 사라짐
+//		$("#here").fadeIn(2000);	//2초 동안 천천히 나타남
+		
+//		$("#here").slideUp(1000);	//1초동안 위로 올라감
+//		$("#here").slideDown(1000); //1초동안 밑으로 내려감
+		
+		
+		$("#here").animate({'left':400 ,'top':200});
+	})
+</script>
+</head>
+
+<body>
+	<div id="here">
+	아자아자 제이쿼리~~!!! 
+	</div>
+	
+	
+	<div id="student">
+		<div id="name">홍길동</div>
+		<div id="age">34</div>
+	</div>
+	
+</body>
+</html>
